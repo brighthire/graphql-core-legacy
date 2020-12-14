@@ -24,7 +24,7 @@ except Exception:
 
 sys.path[:] = path_copy
 
-install_requires = ["six>=1.10.0", "promise>=2.3,<3", "rx>=1.6,<2"]
+install_requires = ["six>=1.10.0", "promise>=2.3,<3", "rx>=1.6,<2", "sentry-sdk>=0.19.0"]
 
 tests_requires = [
     "six==1.14.0",

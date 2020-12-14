@@ -1,4 +1,5 @@
 import collections
+import sentry_sdk
 
 try:
     from collections.abc import Iterable
@@ -456,6 +457,7 @@ def resolve_or_error(
                 info.parent_type.name, info.field_name
             )
         )
+        sentry_sdk.capture_exception()
         e.stack = sys.exc_info()[2]  # type: ignore
         return e
 

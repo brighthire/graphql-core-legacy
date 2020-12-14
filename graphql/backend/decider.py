@@ -3,6 +3,7 @@ import logging
 import threading
 import os
 from time import sleep, time
+import sentry_sdk
 
 from ..pyutils.compat import Queue, check_threads
 from .base import GraphQLBackend, GraphQLDocument
@@ -143,6 +144,7 @@ class AsyncWorker(object):
                     callback(*args, **kwargs)
                 except Exception:
                     logger.error("Failed processing job", exc_info=True)
+                    sentry_sdk.capture_exception()
             finally:
                 self._queue.task_done()
 
